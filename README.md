@@ -50,25 +50,6 @@
 * Code:
   [7] = {LevelReq = 200, Multiplier = 4.5},
 
-[INDEX / POKEDEX LOGIC]
-* Setup: Add `Discovered_BlackHoles = ""` to `DefaultData.Items`.
-* Server Logic (In FunctionHandler.AddOwned):
-  local discovered = player:GetAttribute("Discovered_BlackHoles")
-  if not string.find(discovered, blackHoleName, 1, true) then
-      player:SetAttribute("Discovered_BlackHoles", discovered .. blackHoleName .. ",")
-  end
-* UI Logic: Split the `Discovered_BlackHoles` string and highlight UI frames for items found.
-
-[SKILLS / UPGRADES LOGIC]
-* Setup: Add `SkillPoints = 0` to `DefaultData.Attributes`. Add `Unlocked_Skills = ""` to `DefaultData.Items`.
-* Config: Create `ReplicatedStorage.Config.SkillsData`.
-  return {
-      ["Double_Strike"] = {Cost = 5, Multiplier = 2, Type = "Damage"}
-  }
-* Logic: In `StatesService`, check the `Unlocked_Skills` string. If they own "Double_Strike", multiply damage by 2.
-
-# 4. ECONOMY & ITEMS
-
 [ADDING NEW BLACKHOLES]
 1. Model: Duplicate a Blackhole in `ServerStorage.Models.Blackhole`. Rename it. Keep `HitBox` and `Main` parts.
 2. Config: Open `ReplicatedStorage.Config.BlackholeData` and add stats:
